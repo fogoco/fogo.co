@@ -17,6 +17,7 @@ import {
   Contact,
   Footer,
 } from "./Sections";
+import { PremiumSplit, SignatureMeats } from "./Premium";
 import { BookingForm } from "@/components/booking/BookingForm";
 
 export function BlockRenderer({ block }: { block: AnyBlock }) {
@@ -62,6 +63,16 @@ export function BlockRenderer({ block }: { block: AnyBlock }) {
       return <Contact data={block.data} />;
     case "footer":
       return <Footer data={block.data} />;
+    case "fire_experience":
+      return <PremiumSplit data={block.data} accentLabel="The Fire Experience" />;
+    case "weddings":
+      return <PremiumSplit data={block.data} accentLabel="Weddings" />;
+    case "corporate_events":
+      return <PremiumSplit data={block.data} accentLabel="Corporate" />;
+    case "private_events":
+      return <PremiumSplit data={block.data} accentLabel="Private Events" />;
+    case "signature_meats":
+      return <SignatureMeats data={block.data} />;
     default:
       return null;
   }

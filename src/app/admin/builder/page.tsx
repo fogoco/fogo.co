@@ -17,7 +17,7 @@ export default async function BuilderPage() {
   const initialBlocks: AnyBlock[] =
     (page?.draft_blocks as AnyBlock[] | null) ??
     (
-      ["hero", "brand_intro", "event_types", "signature_experience", "gallery", "booking_cta", "contact", "footer"] as const
+      ["hero", "brand_intro", "fire_experience", "signature_meats", "event_types", "weddings", "corporate_events", "private_events", "gallery", "packages", "testimonials", "booking_cta", "faq", "contact", "footer"] as const
     ).map((type, i) => {
       const def = blockLibrary.find((b) => b.type === type)!;
       return {

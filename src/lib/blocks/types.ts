@@ -15,7 +15,13 @@ export type BlockType =
   | "faq"
   | "booking_cta"
   | "contact"
-  | "footer";
+  | "footer"
+  // Premium specialized blocks
+  | "fire_experience"
+  | "weddings"
+  | "corporate_events"
+  | "private_events"
+  | "signature_meats";
 
 export interface BaseBlock<T extends BlockType = BlockType, D = unknown> {
   id: string;
@@ -130,6 +136,25 @@ export interface MenuHighlightsData {
   items: { name: string; description?: string; imageUrl?: string }[];
 }
 
+export interface PremiumSplitData {
+  eyebrow?: string;
+  title: string;
+  body: string;
+  bullets: string[];
+  imageUrl?: string;
+  videoUrl?: string;
+  ctaLabel?: string;
+  ctaHref?: string;
+  reverse?: boolean;
+}
+
+export interface SignatureMeatsData {
+  eyebrow?: string;
+  title: string;
+  subtitle?: string;
+  items: { name: string; cut?: string; description?: string; imageUrl?: string }[];
+}
+
 export type AnyBlock =
   | BaseBlock<"hero", HeroData>
   | BaseBlock<"hero_split", HeroData>
@@ -147,4 +172,9 @@ export type AnyBlock =
   | BaseBlock<"faq", FaqData>
   | BaseBlock<"booking_cta", BookingCtaData>
   | BaseBlock<"contact", ContactData>
-  | BaseBlock<"footer", FooterData>;
+  | BaseBlock<"footer", FooterData>
+  | BaseBlock<"fire_experience", PremiumSplitData>
+  | BaseBlock<"weddings", PremiumSplitData>
+  | BaseBlock<"corporate_events", PremiumSplitData>
+  | BaseBlock<"private_events", PremiumSplitData>
+  | BaseBlock<"signature_meats", SignatureMeatsData>;
