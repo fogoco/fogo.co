@@ -53,22 +53,22 @@ export const blockLibrary: BlockDefinition[] = [
           title: "Weddings",
           description:
             "Celebrations where fire, flavour and service come together with elegance, crafted to make your day feel warm, seamless and unforgettable for every guest.",
-          videoUrl:
-            "https://qpqppnulhlsanreiwigk.supabase.co/storage/v1/object/public/videos/1.mp4",
+          imageUrl:
+            "https://qpqppnulhlsanreiwigk.supabase.co/storage/v1/object/public/media/wedding.png",
         },
         {
           title: "Corporate Events",
           description:
             "Premium menus and polished execution for launches, teams and key clients, delivered with precision timing and service standards that reflect your brand.",
-          videoUrl:
-            "https://qpqppnulhlsanreiwigk.supabase.co/storage/v1/object/public/videos/corporate.mp4",
+          imageUrl:
+            "https://qpqppnulhlsanreiwigk.supabase.co/storage/v1/object/public/media/corporate.png",
         },
         {
           title: "Private Celebrations",
           description:
             "Tailored experiences for birthdays, anniversaries and long-table moments, with premium cuts and attentive staff creating an elevated celebration from start to finish.",
-          videoUrl:
-            "https://qpqppnulhlsanreiwigk.supabase.co/storage/v1/object/public/videos/private.mp4",
+          imageUrl:
+            "https://qpqppnulhlsanreiwigk.supabase.co/storage/v1/object/public/media/private.png",
         },
       ],
     },
@@ -224,8 +224,8 @@ export const blockLibrary: BlockDefinition[] = [
         "Full front-of-house service team",
         "Dietary-friendly Brazilian sides & salads",
       ],
-      imageUrl:
-        "https://images.unsplash.com/photo-1519741497674-611481863552?q=80&w=1800",
+      videoUrl:
+        "https://qpqppnulhlsanreiwigk.supabase.co/storage/v1/object/public/videos/1.mp4",
       ctaLabel: "Plan your wedding",
       ctaHref: "#booking",
       reverse: true,
@@ -246,8 +246,8 @@ export const blockLibrary: BlockDefinition[] = [
         "Scalable from 30 to 500+ guests",
         "Branded touches available on request",
       ],
-      imageUrl:
-        "https://images.unsplash.com/photo-1555244162-803834f70033?q=80&w=1800",
+      videoUrl:
+        "https://qpqppnulhlsanreiwigk.supabase.co/storage/v1/object/public/videos/corporate.mp4",
       ctaLabel: "Enquire for your company",
       ctaHref: "#booking",
     },
@@ -267,8 +267,8 @@ export const blockLibrary: BlockDefinition[] = [
         "Flexible formats: seated or free-flow",
         "Relaxed, warm, high-end service",
       ],
-      imageUrl:
-        "https://images.unsplash.com/photo-1544025162-d76694265947?q=80&w=1800",
+      videoUrl:
+        "https://qpqppnulhlsanreiwigk.supabase.co/storage/v1/object/public/videos/private.mp4",
       ctaLabel: "Book your celebration",
       ctaHref: "#booking",
       reverse: true,
@@ -385,12 +385,15 @@ export const blockLibrary: BlockDefinition[] = [
     category: "structure",
     defaultData: {
       title: "Get in touch",
-      email: "hello@fogo.co",
-      phone: "+61 400 000 000",
-      address: "Sydney · Melbourne · Byron Bay",
+      email: "contact@fogoco.com.au",
+      phone: "0404244881",
+      address: "Sunshine Coast - Brisbane - Gold Coast",
       socials: [
-        { label: "Instagram", href: "https://instagram.com" },
-        { label: "LinkedIn", href: "https://linkedin.com" },
+        { label: "Instagram", href: "https://www.instagram.com/fogoco.au" },
+        {
+          label: "LinkedIn",
+          href: "https://www.linkedin.com/company/fogoco/posts/?feedView=all",
+        },
       ],
     },
   },

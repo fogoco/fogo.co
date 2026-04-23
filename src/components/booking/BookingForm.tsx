@@ -80,6 +80,11 @@ export function BookingForm({ siteSlug = "fogo-co" }: { siteSlug?: string }) {
       onSubmit={handleSubmit(onSubmit)}
       className="grid gap-5 rounded-2xl border border-border bg-card p-8 md:grid-cols-2 md:p-12"
     >
+      <div className="md:col-span-2">
+        <p className="text-sm text-muted-foreground">
+          Tell us about your event and we&apos;ll prepare a tailored quote, menu and service plan for you.
+        </p>
+      </div>
       <Field label="Full name" error={errors.full_name?.message}>
         <input {...register("full_name")} className={inputCls} />
       </Field>

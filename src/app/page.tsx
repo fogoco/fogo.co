@@ -17,9 +17,9 @@ function demoBlocks(): AnyBlock[] {
     "weddings",
     "corporate_events",
     "private_events",
+    "packages",
     "brand_intro",
     "gallery",
-    "packages",
     "testimonials",
     "booking_cta",
     "faq",
@@ -55,11 +55,30 @@ export default async function HomePage() {
         } as AnyBlock,
         ...blocks,
       ];
+  const normalizedBlocks = (() => {
+    const packageIndex = homeBlocks.findIndex((b) => b.type === "packages");
+    const brandIntroIndex = homeBlocks.findIndex((b) => b.type === "brand_intro");
+
+    if (
+      packageIndex === -1 ||
+      brandIntroIndex === -1 ||
+      packageIndex < brandIntroIndex
+    ) {
+      return homeBlocks;
+    }
+
+    const reordered = [...homeBlocks];
+    const [packagesBlock] = reordered.splice(packageIndex, 1);
+    const insertAt = reordered.findIndex((b) => b.type === "brand_intro");
+    reordered.splice(insertAt, 0, packagesBlock);
+
+    return reordered.map((block, index) => ({ ...block, position: index }));
+  })();
 
   return (
     <main className="bg-grain">
       <ScrollSmoke />
-      <PageRenderer blocks={homeBlocks} />
+      <PageRenderer blocks={normalizedBlocks} />
     </main>
   );
 }

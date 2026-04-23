@@ -127,7 +127,7 @@ export function PremiumSplit({
 
 export function SignatureMeats({ data }: { data: SignatureMeatsData }) {
   return (
-    <section className={sectionClass}>
+    <section id="signature-menu" className={sectionClass}>
       <div className="mb-12 max-w-2xl">
         {data.eyebrow && (
           <p className="mb-4 text-xs uppercase tracking-[0.3em] text-gold-400">
