@@ -6,6 +6,7 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
+    "preview": "sh -c 'PID=$(lsof -ti tcp:3000); [ -z \"$PID\" ] || kill $PID; rm -rf .next; next build && next start -p 3000'",
     "lint": "next lint",
     "typecheck": "tsc --noEmit"
   },

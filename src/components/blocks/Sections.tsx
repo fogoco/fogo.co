@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { ParallaxVideo } from "@/components/blocks/ParallaxVideo";
 import type {
   BrandIntroData,
   EventTypesData,
@@ -16,6 +17,18 @@ import type {
   WhyChooseUsData,
   PackagesData,
 } from "@/lib/blocks/types";
+
+const fogoLogoUrl =
+  "https://qpqppnulhlsanreiwigk.supabase.co/storage/v1/object/public/media/logo%20fogo%20wh.png";
+const joaoEspetoUrl =
+  "https://qpqppnulhlsanreiwigk.supabase.co/storage/v1/object/public/media/jp.png";
+const processIconUrls = [
+  "https://qpqppnulhlsanreiwigk.supabase.co/storage/v1/object/public/media/icon%201.png",
+  "https://qpqppnulhlsanreiwigk.supabase.co/storage/v1/object/public/media/icon%202.png",
+  "https://qpqppnulhlsanreiwigk.supabase.co/storage/v1/object/public/media/icon%203.png",
+] as const;
+const processFireVideoUrl =
+  "https://qpqppnulhlsanreiwigk.supabase.co/storage/v1/object/public/videos/fire.mp4";
 
 const sectionClass =
   "container py-24 md:py-32";
@@ -55,7 +68,7 @@ export function BrandIntro({ data }: { data: BrandIntroData }) {
 export function EventTypes({ data }: { data: EventTypesData }) {
   return (
     <section className={sectionClass}>
-      <div className="mb-14 max-w-2xl">
+      <div className="mb-14 text-center">
         <h2 className="font-display text-4xl md:text-5xl">{data.title}</h2>
         {data.subtitle && (
           <p className="mt-4 text-muted-foreground">{data.subtitle}</p>
@@ -65,20 +78,22 @@ export function EventTypes({ data }: { data: EventTypesData }) {
         {data.items.map((item, i) => (
           <div
             key={i}
-            className="group relative overflow-hidden rounded-lg border border-border bg-card p-8 transition hover:border-ember-500/50"
+            className="group relative overflow-hidden rounded-2xl border border-white/10 bg-[#0f0b09] transition hover:-translate-y-0.5 hover:border-ember-500/40"
           >
             {item.imageUrl && (
               // eslint-disable-next-line @next/next/no-img-element
               <img
                 src={item.imageUrl}
                 alt=""
-                className="mb-6 aspect-[4/3] w-full rounded-md object-cover"
+                className="aspect-[4/3] w-full object-cover"
               />
             )}
-            <h3 className="font-display text-2xl">{item.title}</h3>
-            <p className="mt-3 text-sm text-muted-foreground">
-              {item.description}
-            </p>
+            <div className="p-6">
+              <h3 className="font-display text-3xl text-white">{item.title}</h3>
+              <p className="mt-3 min-h-[4.5rem] text-sm leading-relaxed text-white/65">
+                {item.description}
+              </p>
+            </div>
           </div>
         ))}
       </div>
@@ -144,14 +159,16 @@ export function Gallery({ data }: { data: GalleryData }) {
           <p className="mt-4 text-muted-foreground">{data.subtitle}</p>
         )}
       </div>
-      <div className="grid grid-cols-2 gap-3 md:grid-cols-3">
+      <div className="grid grid-cols-2 gap-3 md:grid-cols-4 md:auto-rows-[220px]">
         {data.images.map((img, i) => (
           // eslint-disable-next-line @next/next/no-img-element
           <img
             key={i}
             src={img.url}
             alt={img.alt ?? ""}
-            className="aspect-square w-full rounded-md object-cover"
+            className={`h-full w-full rounded-xl object-cover ${
+              i % 5 === 0 ? "md:col-span-2 md:row-span-2" : ""
+            }`}
           />
         ))}
       </div>
@@ -228,22 +245,54 @@ export function Stats({ data }: { data: StatsData }) {
 
 export function Process({ data }: { data: ProcessData }) {
   return (
-    <section className={sectionClass}>
-      <h2 className="mb-12 font-display text-4xl md:text-5xl">{data.title}</h2>
-      <div className="grid gap-6 md:grid-cols-3">
-        {data.steps.map((s, i) => (
-          <div key={i} className="rounded-lg border border-border bg-card p-8">
-            <div className="font-display text-5xl text-ember-500">
-              0{i + 1}
-            </div>
-            <h3 className="mt-4 font-display text-2xl">{s.title}</h3>
-            <p className="mt-2 text-sm text-muted-foreground">
-              {s.description}
-            </p>
-          </div>
-        ))}
-      </div>
-    </section>
+    <>
+      <section className="relative left-1/2 right-1/2 -mx-[50vw] w-screen overflow-hidden">
+        <ParallaxVideo
+          src={processFireVideoUrl}
+          className="h-[96vh] w-full"
+          frameClassName="rounded-none"
+        />
+        <div className="pointer-events-none absolute inset-0 bg-black/55" />
+        <div className="pointer-events-none absolute inset-0 z-[1] flex items-center justify-center px-6 text-center">
+          <h3 className="font-display animate-in fade-in slide-in-from-bottom-4 duration-1000 text-3xl leading-tight text-white drop-shadow-[0_8px_26px_rgba(0,0,0,0.6)] md:text-5xl">
+            Every flame tells a story.
+            <br />
+            Let us craft yours.
+          </h3>
+        </div>
+      </section>
+
+      <section className={sectionClass}>
+        <h2 className="mb-12 font-display text-4xl md:text-5xl">{data.title}</h2>
+        <div className="grid gap-6 md:grid-cols-3">
+          {data.steps.map((s, i) => {
+            const iconUrl = processIconUrls[i] ?? processIconUrls[2];
+            return (
+              <div
+                key={i}
+                className="rounded-2xl border border-white/12 bg-[#080808] p-8"
+              >
+                <div className="mb-8 text-white/95">
+                  {/* eslint-disable-next-line @next/next/no-img-element */}
+                  <img
+                    src={iconUrl}
+                    alt=""
+                    className="h-14 w-14 object-contain"
+                  />
+                </div>
+                <div className="font-display text-5xl text-ember-500">
+                  0{i + 1}
+                </div>
+                <h3 className="mt-4 font-display text-2xl">{s.title}</h3>
+                <p className="mt-2 text-sm text-muted-foreground">
+                  {s.description}
+                </p>
+              </div>
+            );
+          })}
+        </div>
+      </section>
+    </>
   );
 }
 
@@ -346,25 +395,39 @@ export function BookingCta({ data }: { data: BookingCtaData }) {
   return (
     <section className={sectionClass}>
       <div className="relative overflow-hidden rounded-2xl border border-border bg-card p-10 md:p-16">
-        {data.backgroundUrl && (
-          <>
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img
-              src={data.backgroundUrl}
-              alt=""
-              className="absolute inset-0 h-full w-full object-cover opacity-40"
-            />
-            <div className="absolute inset-0 bg-gradient-to-tr from-black/80 via-black/50 to-transparent" />
-          </>
-        )}
-        <div className="relative max-w-2xl">
+        <div className="absolute inset-0 overflow-hidden rounded-2xl">
+          {data.backgroundUrl && (
+            <>
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img
+                src={data.backgroundUrl}
+                alt=""
+                className="absolute inset-0 h-full w-full object-cover opacity-40"
+              />
+              <div className="absolute inset-0 bg-gradient-to-tr from-black/80 via-black/50 to-transparent" />
+            </>
+          )}
+        </div>
+        {/* eslint-disable-next-line @next/next/no-img-element */}
+        <img
+          src={joaoEspetoUrl}
+          alt="Premium fire-grilled meat"
+          className="pointer-events-none absolute bottom-0 right-3 hidden h-[96%] w-auto drop-shadow-[0_18px_30px_rgba(0,0,0,0.42)] md:block lg:right-8"
+          style={{
+            WebkitMaskImage:
+              "linear-gradient(to right, transparent 0%, rgba(0,0,0,0.75) 20%, rgba(0,0,0,1) 38%, rgba(0,0,0,1) 100%)",
+            maskImage:
+              "linear-gradient(to right, transparent 0%, rgba(0,0,0,0.75) 20%, rgba(0,0,0,1) 38%, rgba(0,0,0,1) 100%)",
+          }}
+        />
+        <div className="relative max-w-2xl md:pr-52 lg:pr-64">
           <h2 className="font-display text-3xl md:text-5xl">{data.title}</h2>
           {data.body && (
             <p className="mt-4 text-muted-foreground">{data.body}</p>
           )}
           <Link
             href={data.ctaHref}
-            className="mt-8 inline-flex items-center rounded-full bg-ember-500 px-7 py-3.5 text-sm font-medium text-white transition hover:bg-ember-600"
+            className="btn-bronze mt-8 inline-flex items-center rounded-full px-7 py-3.5 text-sm font-medium"
           >
             {data.ctaLabel}
           </Link>
@@ -423,7 +486,8 @@ export function Footer({ data }: { data: FooterData }) {
       <div className="container py-14">
         <div className="flex flex-col gap-8 md:flex-row md:items-end md:justify-between">
           <div>
-            <p className="font-display text-2xl">Fogo & Co</p>
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img src={fogoLogoUrl} alt="Fogo & Co" className="h-14 w-auto" />
             {data.tagline && (
               <p className="mt-2 text-sm text-muted-foreground">
                 {data.tagline}

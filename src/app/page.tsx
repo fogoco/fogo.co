@@ -1,4 +1,5 @@
 import { PageRenderer } from "@/components/blocks/Renderer";
+import { ScrollSmoke } from "@/components/blocks/ScrollSmoke";
 import { getPublishedHomepage } from "@/lib/data/pages";
 import { blockLibrary } from "@/lib/blocks/registry";
 import type { AnyBlock } from "@/lib/blocks/types";
@@ -9,15 +10,15 @@ function demoBlocks(): AnyBlock[] {
   // Fallback rendering for first boot without database data.
   const order = [
     "hero",
-    "brand_intro",
     "fire_experience",
-    "signature_meats",
     "event_types",
+    "process",
+    "signature_meats",
     "weddings",
     "corporate_events",
     "private_events",
+    "brand_intro",
     "gallery",
-    "process",
     "packages",
     "testimonials",
     "booking_cta",
@@ -41,10 +42,24 @@ export default async function HomePage() {
   const siteSlug = process.env.NEXT_PUBLIC_SITE_SLUG || "fogo-co";
   const data = await getPublishedHomepage(siteSlug).catch(() => null);
   const blocks = data?.blocks?.length ? data.blocks : demoBlocks();
+  const hasHero = blocks.some((b) => b.type === "hero" || b.type === "hero_split");
+  const homeBlocks = hasHero
+    ? blocks
+    : [
+        {
+          id: "fallback-hero",
+          type: "hero",
+          visible: true,
+          position: -1,
+          data: blockLibrary.find((b) => b.type === "hero")!.defaultData,
+        } as AnyBlock,
+        ...blocks,
+      ];
 
   return (
     <main className="bg-grain">
-      <PageRenderer blocks={blocks} />
+      <ScrollSmoke />
+      <PageRenderer blocks={homeBlocks} />
     </main>
   );
 }
