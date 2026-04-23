@@ -48,12 +48,13 @@ export interface BrandIntroData {
   title: string;
   body: string;
   imageUrl?: string;
+  videoUrl?: string;
 }
 
 export interface EventTypesData {
   title: string;
   subtitle?: string;
-  items: { title: string; description: string; imageUrl?: string }[];
+  items: { title: string; description: string; imageUrl?: string; videoUrl?: string }[];
 }
 
 export interface SignatureExperienceData {

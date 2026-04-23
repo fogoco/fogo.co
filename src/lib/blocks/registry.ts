@@ -36,6 +36,8 @@ export const blockLibrary: BlockDefinition[] = [
       eyebrow: "About Fogo & Co",
       title: "Brazilian fire, crafted for Australia.",
       body: "We bring the heart of Brazilian churrasco to your most important moments — refined service, premium cuts, and a live-fire experience that turns every event into a celebration.",
+      videoUrl:
+        "https://qpqppnulhlsanreiwigk.supabase.co/storage/v1/object/public/videos/fogo%202.mp4",
     },
   },
   {
@@ -51,22 +53,22 @@ export const blockLibrary: BlockDefinition[] = [
           title: "Weddings",
           description:
             "Celebrations where fire, flavour and service come together with elegance, crafted to make your day feel warm, seamless and unforgettable for every guest.",
-          imageUrl:
-            "https://qpqppnulhlsanreiwigk.supabase.co/storage/v1/object/public/media/wedding.png",
+          videoUrl:
+            "https://qpqppnulhlsanreiwigk.supabase.co/storage/v1/object/public/videos/1.mp4",
         },
         {
           title: "Corporate Events",
           description:
             "Premium menus and polished execution for launches, teams and key clients, delivered with precision timing and service standards that reflect your brand.",
-          imageUrl:
-            "https://qpqppnulhlsanreiwigk.supabase.co/storage/v1/object/public/media/corporate.png",
+          videoUrl:
+            "https://qpqppnulhlsanreiwigk.supabase.co/storage/v1/object/public/videos/corporate.mp4",
         },
         {
           title: "Private Celebrations",
           description:
             "Tailored experiences for birthdays, anniversaries and long-table moments, with premium cuts and attentive staff creating an elevated celebration from start to finish.",
-          imageUrl:
-            "https://qpqppnulhlsanreiwigk.supabase.co/storage/v1/object/public/media/private.png",
+          videoUrl:
+            "https://qpqppnulhlsanreiwigk.supabase.co/storage/v1/object/public/videos/private.mp4",
         },
       ],
     },

@@ -29,6 +29,16 @@ const processIconUrls = [
 ] as const;
 const processFireVideoUrl =
   "https://qpqppnulhlsanreiwigk.supabase.co/storage/v1/object/public/videos/fire.mp4";
+const brandIntroVideoUrl =
+  "https://qpqppnulhlsanreiwigk.supabase.co/storage/v1/object/public/videos/fogo%202.mp4";
+const eventTypeVideoByTitle = {
+  weddings:
+    "https://qpqppnulhlsanreiwigk.supabase.co/storage/v1/object/public/videos/1.mp4",
+  "corporate events":
+    "https://qpqppnulhlsanreiwigk.supabase.co/storage/v1/object/public/videos/corporate.mp4",
+  "private celebrations":
+    "https://qpqppnulhlsanreiwigk.supabase.co/storage/v1/object/public/videos/private.mp4",
+} as const;
 
 const sectionClass =
   "container py-24 md:py-32";
@@ -50,16 +60,27 @@ export function BrandIntro({ data }: { data: BrandIntroData }) {
             {data.body}
           </p>
         </div>
-        {data.imageUrl && (
-          <div className="md:col-span-5">
-            {/* eslint-disable-next-line @next/next/no-img-element */}
+        <div className="md:col-span-5">
+          {(data.videoUrl ?? brandIntroVideoUrl) ? (
+            <video
+              src={data.videoUrl ?? brandIntroVideoUrl}
+              className="aspect-[4/5] w-full rounded-lg object-cover"
+              muted
+              loop
+              autoPlay
+              playsInline
+            />
+          ) : data.imageUrl ? (
+            // eslint-disable-next-line @next/next/no-img-element
             <img
               src={data.imageUrl}
               alt=""
               className="aspect-[4/5] w-full rounded-lg object-cover"
             />
-          </div>
-        )}
+          ) : (
+            <div className="aspect-[4/5] w-full rounded-lg bg-muted" />
+          )}
+        </div>
       </div>
     </section>
   );
@@ -75,27 +96,40 @@ export function EventTypes({ data }: { data: EventTypesData }) {
         )}
       </div>
       <div className="grid gap-6 md:grid-cols-3">
-        {data.items.map((item, i) => (
-          <div
-            key={i}
-            className="group relative overflow-hidden rounded-2xl border border-white/10 bg-[#0f0b09] transition hover:-translate-y-0.5 hover:border-ember-500/40"
-          >
-            {item.imageUrl && (
-              // eslint-disable-next-line @next/next/no-img-element
-              <img
-                src={item.imageUrl}
-                alt=""
-                className="aspect-[4/3] w-full object-cover"
-              />
-            )}
-            <div className="p-6">
-              <h3 className="font-display text-3xl text-white">{item.title}</h3>
-              <p className="mt-3 min-h-[4.5rem] text-sm leading-relaxed text-white/65">
-                {item.description}
-              </p>
+        {data.items.map((item, i) => {
+          const titleKey = item.title.trim().toLowerCase() as keyof typeof eventTypeVideoByTitle;
+          const videoUrl = item.videoUrl ?? eventTypeVideoByTitle[titleKey];
+          return (
+            <div
+              key={i}
+              className="group relative overflow-hidden rounded-2xl border border-white/10 bg-[#0f0b09] transition hover:-translate-y-0.5 hover:border-ember-500/40"
+            >
+              {videoUrl ? (
+                <video
+                  src={videoUrl}
+                  className="aspect-[4/3] w-full object-cover"
+                  muted
+                  loop
+                  autoPlay
+                  playsInline
+                />
+              ) : item.imageUrl ? (
+                // eslint-disable-next-line @next/next/no-img-element
+                <img
+                  src={item.imageUrl}
+                  alt=""
+                  className="aspect-[4/3] w-full object-cover"
+                />
+              ) : null}
+              <div className="p-6">
+                <h3 className="font-display text-3xl text-white">{item.title}</h3>
+                <p className="mt-3 min-h-[4.5rem] text-sm leading-relaxed text-white/65">
+                  {item.description}
+                </p>
+              </div>
             </div>
-          </div>
-        ))}
+          );
+        })}
       </div>
     </section>
   );
