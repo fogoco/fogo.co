@@ -4,7 +4,6 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 import { useState } from "react";
-import { createClient } from "@/lib/supabase/client";
 import { CheckCircle2 } from "lucide-react";
 
 const schema = z.object({
@@ -39,27 +38,24 @@ export function BookingForm({ siteSlug = "fogo-co" }: { siteSlug?: string }) {
 
   async function onSubmit(values: FormValues) {
     setError(null);
-    const supabase = createClient();
-    const { data: site } = await supabase
-      .from("sites")
-      .select("id")
-      .eq("slug", siteSlug)
-      .single();
+    try {
+      const res = await fetch("/api/booking-enquiry", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(values),
+      });
 
-    if (!site) {
-      setError("Site not found. Please try again later.");
-      return;
+      const data = await res.json();
+
+      if (!res.ok) {
+        setError(data.error || "Failed to submit enquiry. Please try again.");
+        return;
+      }
+
+      setSubmitted(true);
+    } catch (err) {
+      setError("An unexpected error occurred. Please try again.");
     }
-
-    const { error: insertError } = await supabase
-      .from("booking_enquiries")
-      .insert({ ...values, site_id: site.id, status: "new" });
-
-    if (insertError) {
-      setError(insertError.message);
-      return;
-    }
-    setSubmitted(true);
   }
 
   if (submitted) {
