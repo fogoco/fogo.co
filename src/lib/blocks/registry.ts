@@ -34,8 +34,8 @@ export const blockLibrary: BlockDefinition[] = [
     category: "story",
     defaultData: {
       eyebrow: "About Fogo & Co",
-      title: "Brazilian fire, crafted for Australia.",
-      body: "We bring the heart of Brazilian churrasco to your most important moments — refined service, premium cuts, and a live-fire experience that turns every event into a celebration.",
+      title: "Born from Fire. Crafted with\nSoul - Brazilian Roots, Australian Spirit",
+      body: "Fogo & Co. is a Sunshine Coast company that blends authentic Brazilian barbecue with the laid-back Australian lifestyle. Specialising in slow-smoked meats, charcoal barbecue and handcrafted menus, the brand combines traditional Brazilian techniques with local Australian flavour, creating memorable experiences through food, fire and hospitality.\n\nIn 2025, the company expanded operations by acquiring Backstreet Cafe in Mooloolaba, preserving the cafe's character while bringing it into the Fogo & Co vision and operation.",
       videoUrl:
         "https://qpqppnulhlsanreiwigk.supabase.co/storage/v1/object/public/videos/fogo%202.mp4",
     },
@@ -196,9 +196,9 @@ export const blockLibrary: BlockDefinition[] = [
     defaultData: {
       eyebrow: "The Fire Experience",
       title: "Live fire. Unforgettable presence.",
-      body: "Led by João Packer, Fogo & Co was built around one promise: every event delivered with excellence. From premium meat selection and precise fire control to a polished, attentive team, every detail is curated to feel first-class from the first greeting to the final service.",
+      body: "Led by Jhon Packer, Fogo & Co was built around one promise: every event delivered with excellence. From premium meat selection and precise fire control to a polished, attentive team, every detail is curated to feel first-class from the first greeting to the final service.",
       bullets: [
-        "João Packer's live-fire signature at the centre of your event",
+        "Jhon Packer's live-fire signature at the centre of your event",
         "Only premium cuts, selected for consistency and flavour",
         "High-standard staff and warm, professional service",
         "First-class execution from setup to final plate",
@@ -345,34 +345,31 @@ export const blockLibrary: BlockDefinition[] = [
       title: "Tailored service tiers",
       tiers: [
         {
-          name: "Signature",
-          priceFrom: "$145 pp",
+          name: "STARTERS",
           features: [
-            "Three premium cuts",
-            "Four Brazilian sides",
-            "Churrasqueiro on-site",
-            "2-hour service window",
+            "Garlic Bread — Traditional Brazilian-style crusty bread with garlic butter, toasted over charcoal.",
+            "Chicken Wings — Juicy wings marinated and grilled to perfection, served with barbecue sauce and buffalo sauce.",
+            "Triple Smoked Chorizo — Slices of triple smoked chorizo, flame grilled over charcoal.",
+            "Pork Belly Burnt Ends — Smoky, caramelised bites of pork belly, crispy outside and tender inside, glazed with our homemade sticky Asian sauce.",
           ],
         },
         {
-          name: "Experience",
-          priceFrom: "$195 pp",
-          highlighted: true,
+          name: "SIDES",
           features: [
-            "Five premium cuts incl. picanha",
-            "Six sides & Brazilian salads",
-            "Live-fire parrilla set-up",
-            "Full service team (chef + 2 staff)",
+            "Potato Salad (Brazilian Style) — Creamy and refreshing, made with herbs and house mayo.",
+            "Rocket & Parmesan Salad — Peppery greens tossed with shaved parmesan and balsamic glaze.",
+            "Boiled Corn on the Cob — Classic, buttery and sweet.",
+            "Vinaigrette Salsa — Fresh chopped tomatoes, onion and herbs in vinegar dressing.",
+            "Grilled Pineapple — Caramelised with cinnamon, a tropical finish perfect as a light dessert.",
           ],
         },
         {
-          name: "Bespoke",
-          priceFrom: "On request",
+          name: "MAINS",
           features: [
-            "Custom menu tasting",
-            "Whole-lamb & rodízio service",
-            "Full front-of-house team",
-            "Drinks, styling, equipment hire",
+            "Picanha (Rump Cap) — Brazil's most iconic cut, flame grilled and juicy with a perfect fat cap.",
+            "Beef Short Ribs — Smoked low and slow for hours until fall-off-the-bone tender.",
+            "Pork Riblets — Flame grilled over charcoal for a rich, smoky flavour.",
+            "Brazilian Style Chicken Thighs — Chicken thighs marinated for 48 hours in our homemade Brazilian-style marinade, then cooked over charcoal to deliver a deep smoky flavour.",
           ],
         },
       ],

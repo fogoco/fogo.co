@@ -29,7 +29,7 @@ const processIconUrls = [
   "https://qpqppnulhlsanreiwigk.supabase.co/storage/v1/object/public/media/icon%203.png",
 ] as const;
 const processFireVideoUrl =
-  "https://qpqppnulhlsanreiwigk.supabase.co/storage/v1/object/public/videos/fire.mp4";
+  "https://qpqppnulhlsanreiwigk.supabase.co/storage/v1/object/public/videos/fogo.mp4";
 const brandIntroVideoUrl =
   "https://qpqppnulhlsanreiwigk.supabase.co/storage/v1/object/public/videos/fogo%202.mp4";
 const eventTypeImageByTitle = {
@@ -105,9 +105,13 @@ export function BrandIntro({ data }: { data: BrandIntroData }) {
             </p>
           )}
           <h2 className="font-display text-4xl leading-tight md:text-5xl">
-            {data.title}
+            {data.title.split("\n").map((line, index) => (
+              <span key={`${line}-${index}`} className="block">
+                {line}
+              </span>
+            ))}
           </h2>
-          <p className="mt-6 text-base text-muted-foreground md:text-lg">
+          <p className="mt-6 text-left text-base text-muted-foreground md:text-lg md:text-justify">
             {data.body}
           </p>
         </div>
@@ -334,7 +338,7 @@ export function Process({ data }: { data: ProcessData }) {
       <section className="relative left-1/2 right-1/2 -mx-[50vw] w-screen overflow-hidden">
         <ParallaxVideo
           src={processFireVideoUrl}
-          className="h-[96vh] w-full"
+          className="h-[72vh] w-full md:h-[96vh]"
           frameClassName="rounded-none"
         />
         <div className="pointer-events-none absolute inset-0 bg-black/55" />
@@ -400,7 +404,13 @@ export function WhyChooseUs({ data }: { data: WhyChooseUsData }) {
 export function Packages({ data }: { data: PackagesData }) {
   return (
     <section className={sectionClass}>
-      <h2 className="mb-12 font-display text-4xl md:text-5xl">{data.title}</h2>
+      <h2 className="mb-12 font-display text-4xl md:text-5xl">
+        {data.title.split("\n").map((line, index) => (
+          <span key={`${line}-${index}`} className="block">
+            {line}
+          </span>
+        ))}
+      </h2>
       <div className="grid gap-6 md:grid-cols-3">
         {data.tiers.map((t, i) => (
           <div
@@ -546,7 +556,7 @@ export function Contact({ data }: { data: ContactData }) {
   const regions = "Sunshine Coast - Brisbane - Gold Coast";
 
   return (
-    <section id="contact" className={sectionClass}>
+    <section id="contact" className={`${sectionClass} border-t border-ember-500/55`}>
       <h2 className="mb-10 font-display text-4xl md:text-5xl">{data.title}</h2>
       <div className="grid gap-10 md:grid-cols-3">
         <div>

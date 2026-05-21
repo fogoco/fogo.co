@@ -72,7 +72,25 @@ export default async function HomePage() {
     const insertAt = reordered.findIndex((b) => b.type === "brand_intro");
     reordered.splice(insertAt, 0, packagesBlock);
 
-    return reordered.map((block, index) => ({ ...block, position: index }));
+    const withPackagesOrdered = reordered.map((block, index) => ({ ...block, position: index }));
+
+    const processIndex = withPackagesOrdered.findIndex((b) => b.type === "process");
+    const footerIndex = withPackagesOrdered.findIndex((b) => b.type === "footer");
+
+    if (
+      processIndex === -1 ||
+      footerIndex === -1 ||
+      processIndex === footerIndex - 1
+    ) {
+      return withPackagesOrdered;
+    }
+
+    const reorderedProcess = [...withPackagesOrdered];
+    const [processBlock] = reorderedProcess.splice(processIndex, 1);
+    const targetFooterIndex = reorderedProcess.findIndex((b) => b.type === "footer");
+    reorderedProcess.splice(targetFooterIndex, 0, processBlock);
+
+    return reorderedProcess.map((block, index) => ({ ...block, position: index }));
   })();
 
   return (

@@ -55,6 +55,12 @@ export function BlockRenderer({ block }: { block: AnyBlock }) {
         <>
           <BookingCta data={block.data} />
           <section id="booking" className="container pb-24 md:pb-32">
+            <div className="mb-8 max-w-2xl">
+              <h3 className="font-display text-3xl md:text-4xl">Event Enquiry Form</h3>
+              <p className="mt-3 text-sm text-muted-foreground md:text-base">
+                Share your event details below and our team will send a tailored proposal.
+              </p>
+            </div>
             <BookingForm />
           </section>
         </>
